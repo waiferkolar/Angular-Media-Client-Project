@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {LocalService} from '../sysgen/localservice';
 
 @Component({
   selector: 'app-nav',
@@ -6,10 +7,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./nav.component.css']
 })
 export class NavComponent implements OnInit {
+  isAuth;
 
-  constructor() { }
+  constructor(private http: LocalService) {
+  }
 
   ngOnInit() {
+    this.http.authBool.subscribe(
+      response => {
+        this.isAuth = response;
+      }
+    );
   }
 
 }

@@ -1,0 +1,37 @@
+<div class="container my-5">
+  <h1 class="text-center text-info mb-5">Login To Read Posts</h1>
+  <div class="col-md-6 mx-auto">
+    <form
+      [formGroup]="form"
+      (ngSubmit)="startLogin(form.value)"
+      autocomplete="off"
+    >
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" class="form-control rounded-0" id="email" name="email" formControlName="email">
+        <small id="emailRequiredHelp" class="form-text text-danger" *ngIf="form.get('email').hasError('required')">
+          Email Required
+        </small>
+
+        <small id="emailHelp" class="form-text text-danger" *ngIf="form.get('email').hasError('email')">
+          Supply valid Email
+        </small>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class="form-control rounded-0" id="password" name="password" formControlName="password">
+        <small id="passwordRequiredHelp" class="form-text text-danger"
+               *ngIf="form.get('password').hasError('required')">
+          Password Required
+        </small>
+        <small id="passwordHelp" class="form-text text-danger" *ngIf="form.get('password').hasError('minlength')">
+          Password must be at least 6 character
+        </small>
+      </div>
+      <div class="row justify-content-between no-gutters">
+        <a routerLink="register" class="text-muted">Not a member yet! Please login hrere!</a>
+        <button type="submit" [disabled]="!form.valid" class="btn btn-primary btn-sm">Login</button>
+      </div>
+    </form>
+  </div>
+</div>
