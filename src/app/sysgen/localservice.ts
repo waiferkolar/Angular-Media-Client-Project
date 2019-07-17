@@ -10,6 +10,10 @@ export class LocalService {
   catUrl = this.BASE_URL + 'cats';
   detailUrl = this.BASE_URL + 'cat/';
   loginUrl = this.BASE_URL + 'user/api/login';
+  adminCatUrl = this.BASE_URL + 'admin/cat/all';
+  adminGalleryUrlAll = this.BASE_URL + 'admin/gallery/all';
+  adminImageUploadUrl = this.BASE_URL + 'admin/image/upload';
+  adminPostPaginateUrl = this.BASE_URL + '/product/paginate/';
 
   isAuth = new Subject<boolean>();
   authBool = this.isAuth.asObservable();
@@ -46,5 +50,37 @@ export class LocalService {
     );
   }
 
+  getAllAdminCat() {
+    return this.http.get(this.adminCatUrl).pipe(
+      map(
+        (response: any) => response
+      )
+    );
+  }
+
+  getAllAdminGallery() {
+    return this.http.get(this.adminGalleryUrlAll).pipe(
+      map(
+        (response: any) => response
+      )
+    );
+  }
+
+  uploadImage(data) {
+    return this.http.post(this.adminImageUploadUrl, data).pipe(
+      map(
+        (response: any) => response
+      )
+    );
+  }
+
+  getPaginatePost(start, end) {
+    const link = this.adminPostPaginateUrl + start + '/' + end;
+    return this.http.get(link).pipe(
+      map(
+        (response: any) => response
+      )
+    );
+  }
 
 }

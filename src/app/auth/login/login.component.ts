@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {LocalService} from '../../sysgen/localservice';
 import {Loki} from '../../sysgen/loki';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,7 @@ import {Loki} from '../../sysgen/loki';
 export class LoginComponent implements OnInit {
   form;
 
-  constructor(private http: LocalService) {
+  constructor(private http: LocalService, private router: Router) {
 
   }
 
@@ -34,6 +35,7 @@ export class LoginComponent implements OnInit {
         if (response.con) {
           Loki.save(response.token);
           this.http.changeAuth(true);
+          this.router.navigate(['admin']);
         }
       },
       error => {

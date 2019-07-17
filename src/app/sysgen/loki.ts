@@ -16,4 +16,8 @@ export class Loki {
     return localStorage.getItem('token');
   }
 
+  static remote() {
+    return localStorage.removeItem('token');
+  }
+
 }

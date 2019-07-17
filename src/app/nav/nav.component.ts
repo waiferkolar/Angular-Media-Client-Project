@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {LocalService} from '../sysgen/localservice';
+import {Loki} from '../sysgen/loki';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-nav',
@@ -9,7 +11,7 @@ import {LocalService} from '../sysgen/localservice';
 export class NavComponent implements OnInit {
   isAuth;
 
-  constructor(private http: LocalService) {
+  constructor(private http: LocalService, private router: Router) {
   }
 
   ngOnInit() {
@@ -18,6 +20,12 @@ export class NavComponent implements OnInit {
         this.isAuth = response;
       }
     );
+  }
+
+  logoutUser() {
+    Loki.remote();
+    this.router.navigate(['/']);
+    this.http.changeAuth(false);
   }
 
 }
