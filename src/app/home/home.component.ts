@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {LocalService} from '../sysgen/localservice';
+import { Component, OnInit } from '@angular/core';
+import { LocalService } from '../sysgen/localservice';
 
 @Component({
   selector: 'app-home',
@@ -9,8 +9,9 @@ import {LocalService} from '../sysgen/localservice';
 export class HomeComponent implements OnInit {
   cats;
   loadShow = false;
-
+  link = "";
   constructor(private http: LocalService) {
+    this.link = http.BASE_URL+"imgs/";
   }
 
   ngOnInit() {

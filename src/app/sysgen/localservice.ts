@@ -1,12 +1,12 @@
-import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {map} from 'rxjs/operators';
-import {Subject} from 'rxjs/Subject';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
+import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class LocalService {
 
-  BASE_URL = 'http://localhost:3000/';
+  BASE_URL = 'http://178.128.25.33:3000/';
   catUrl = this.BASE_URL + 'cats';
   detailUrl = this.BASE_URL + 'cat/';
   loginUrl = this.BASE_URL + 'user/api/login';
@@ -15,6 +15,7 @@ export class LocalService {
   adminImageUploadUrl = this.BASE_URL + 'admin/image/upload';
   adminPostPaginateUrl = this.BASE_URL + 'admin/product/paginate/';
   adminPostCreateUrl = this.BASE_URL + 'admin/product/create';
+  registerUserUrl = this.BASE_URL + 'user/api/register';
 
   isAuth = new Subject<boolean>();
   authBool = this.isAuth.asObservable();
@@ -45,6 +46,14 @@ export class LocalService {
 
   loginUserNow(data) {
     return this.http.post(this.loginUrl, data).pipe(
+      map(
+        (response: any) => response
+      )
+    );
+  }
+
+  registerUserNow(data) {
+    return this.http.post(this.registerUserUrl, data).pipe(
       map(
         (response: any) => response
       )

@@ -1,5 +1,6 @@
-import {Component, OnInit} from '@angular/core';
-import {FormControl, Validators, FormGroup} from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormControl, Validators, FormGroup } from '@angular/forms';
+import { LocalService } from '../../sysgen/localservice';
 
 
 @Component({
@@ -10,7 +11,7 @@ import {FormControl, Validators, FormGroup} from '@angular/forms';
 export class RegisterComponent implements OnInit {
   registerForm;
 
-  constructor() {
+  constructor(private http: LocalService) {
   }
 
   ngOnInit() {
@@ -31,7 +32,14 @@ export class RegisterComponent implements OnInit {
   }
 
   startRegister(data) {
-    console.log(data);
+    this.http.registerUserNow(data).subscribe(
+      response => {
+        console.log(response);
+      },
+      error => {
+        console.log(error);
+      }
+    )
   }
 
 }
