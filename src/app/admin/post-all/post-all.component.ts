@@ -8,17 +8,32 @@ import {LocalService} from '../../sysgen/localservice';
 })
 export class PostAllComponent implements OnInit {
   products;
+  pages;
+  page;
 
   constructor(private http: LocalService) {
 
   }
 
   ngOnInit() {
-    this.http.getPaginatePost(1, 50).subscribe(
+    this.pageLoad(1);
+  }
+
+  reload(pNum) {
+    let destPage = this.page + pNum;
+    if (destPage <= this.pages && destPage >= 1) {
+      this.pageLoad(destPage);
+    }
+  }
+
+  pageLoad(start) {
+    this.http.getPaginatePost(start, 30).subscribe(
       response => {
         if (response.con) {
-          console.log(response);
-          this.products = response.msg;
+          console.log(response.msg);
+          this.products = response.msg.docs;
+          this.pages = response.msg.pages;
+          this.page = response.msg.page;
         } else {
           console.log(response);
         }

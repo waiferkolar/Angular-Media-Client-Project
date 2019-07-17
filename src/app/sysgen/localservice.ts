@@ -13,7 +13,7 @@ export class LocalService {
   adminCatUrl = this.BASE_URL + 'admin/cat/all';
   adminGalleryUrlAll = this.BASE_URL + 'admin/gallery/all';
   adminImageUploadUrl = this.BASE_URL + 'admin/image/upload';
-  adminPostPaginateUrl = this.BASE_URL + '/product/paginate/';
+  adminPostPaginateUrl = this.BASE_URL + 'admin/product/paginate/';
 
   isAuth = new Subject<boolean>();
   authBool = this.isAuth.asObservable();
