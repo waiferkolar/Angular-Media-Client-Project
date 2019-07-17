@@ -14,6 +14,7 @@ export class LocalService {
   adminGalleryUrlAll = this.BASE_URL + 'admin/gallery/all';
   adminImageUploadUrl = this.BASE_URL + 'admin/image/upload';
   adminPostPaginateUrl = this.BASE_URL + 'admin/product/paginate/';
+  adminPostCreateUrl = this.BASE_URL + 'admin/product/create';
 
   isAuth = new Subject<boolean>();
   authBool = this.isAuth.asObservable();
@@ -77,6 +78,14 @@ export class LocalService {
   getPaginatePost(start, end) {
     const link = this.adminPostPaginateUrl + start + '/' + end;
     return this.http.get(link).pipe(
+      map(
+        (response: any) => response
+      )
+    );
+  }
+
+  postCreate(data) {
+    return this.http.post(this.adminPostCreateUrl, data).pipe(
       map(
         (response: any) => response
       )

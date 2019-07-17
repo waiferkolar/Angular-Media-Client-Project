@@ -22,6 +22,7 @@ import {PostCreateComponent} from './admin/post-create/post-create.component';
 import {AuthInterceptor} from './sysgen/auth.interceptor';
 import {ImageCropperModule} from 'ngx-image-cropper';
 import { PostAllComponent } from './admin/post-all/post-all.component';
+import { LoadingComponent } from './loading/loading.component';
 
 
 @NgModule({
@@ -40,6 +41,7 @@ import { PostAllComponent } from './admin/post-all/post-all.component';
     GalleryCreateComponent,
     PostCreateComponent,
     PostAllComponent,
+    LoadingComponent,
 
   ],
   imports: [
