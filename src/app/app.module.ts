@@ -23,6 +23,10 @@ import {AuthInterceptor} from './sysgen/auth.interceptor';
 import {ImageCropperModule} from 'ngx-image-cropper';
 import { PostAllComponent } from './admin/post-all/post-all.component';
 import { LoadingComponent } from './loading/loading.component';
+import { CartDetailComponent } from './cart-detail/cart-detail.component';
+import { HistoryComponent } from './history/history.component';
+import { HistoryHomeComponent } from './history/history-home/history-home.component';
+import { HistoryDetailComponent } from './history/history-detail/history-detail.component';
 
 
 @NgModule({
@@ -42,6 +46,10 @@ import { LoadingComponent } from './loading/loading.component';
     PostCreateComponent,
     PostAllComponent,
     LoadingComponent,
+    CartDetailComponent,
+    HistoryComponent,
+    HistoryHomeComponent,
+    HistoryDetailComponent,
 
   ],
   imports: [

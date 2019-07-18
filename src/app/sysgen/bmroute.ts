@@ -11,10 +11,21 @@ import {GalleryCreateComponent} from '../admin/gallery-create/gallery-create.com
 import {PostCreateComponent} from '../admin/post-create/post-create.component';
 import {PostAllComponent} from '../admin/post-all/post-all.component';
 import {LoadingComponent} from '../loading/loading.component';
+import {CartDetailComponent} from '../cart-detail/cart-detail.component';
+import {HistoryComponent} from '../history/history.component';
+import {HistoryHomeComponent} from '../history/history-home/history-home.component';
+import {HistoryDetailComponent} from '../history/history-detail/history-detail.component';
 
 const BMROUTE: Routes = [
   {path: '', component: HomeComponent},
   {path: 'loading', component: LoadingComponent},
+  {
+    path: 'history', component: HistoryComponent, children: [
+      {path: '', component: HistoryHomeComponent},
+      {path: 'detail/:id', component: HistoryDetailComponent},
+    ]
+  },
+  {path: 'cart/detail', component: CartDetailComponent},
   {path: 'detail/:id', component: DetailComponent},
   {
     path: 'auth', component: AuthComponent, children: [

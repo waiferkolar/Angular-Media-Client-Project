@@ -1,12 +1,12 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
-import { Subject } from 'rxjs/Subject';
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {map} from 'rxjs/operators';
+import {Subject} from 'rxjs/Subject';
 
 @Injectable()
 export class LocalService {
 
-  BASE_URL = 'http://178.128.25.33:3000/';
+  BASE_URL = 'http://localhost:3000/';
   catUrl = this.BASE_URL + 'cats';
   detailUrl = this.BASE_URL + 'cat/';
   loginUrl = this.BASE_URL + 'user/api/login';
@@ -16,15 +16,27 @@ export class LocalService {
   adminPostPaginateUrl = this.BASE_URL + 'admin/product/paginate/';
   adminPostCreateUrl = this.BASE_URL + 'admin/product/create';
   registerUserUrl = this.BASE_URL + 'user/api/register';
+  orderUploadUrl = this.BASE_URL + 'user/order';
+  hisotryAllUrl = this.BASE_URL + 'user/order/history';
+  historyDetailUrl = this.BASE_URL + 'user/order/detail/';
+
 
   isAuth = new Subject<boolean>();
   authBool = this.isAuth.asObservable();
 
+  isCartChange = new Subject<boolean>();
+  cartChangeBool = this.isCartChange.asObservable();
+
   constructor(private http: HttpClient) {
   }
 
+
   changeAuth(val: boolean) {
     this.isAuth.next(val);
+  }
+
+  cartChange(val: boolean) {
+    this.isCartChange.next(val);
   }
 
   getAllCats() {
@@ -95,6 +107,31 @@ export class LocalService {
 
   postCreate(data) {
     return this.http.post(this.adminPostCreateUrl, data).pipe(
+      map(
+        (response: any) => response
+      )
+    );
+  }
+
+  postOrder(data) {
+    return this.http.post(this.orderUploadUrl, data).pipe(
+      map(
+        (response: any) => response
+      )
+    );
+  }
+
+  getAllHistory() {
+    return this.http.get(this.hisotryAllUrl).pipe(
+      map(
+        (response: any) => response
+      )
+    );
+  }
+
+  getOrderDetailById(id) {
+    const link = this.historyDetailUrl + id;
+    return this.http.get(link).pipe(
       map(
         (response: any) => response
       )

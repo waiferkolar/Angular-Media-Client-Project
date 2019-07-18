@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {LocalService} from '../sysgen/localservice';
 import {Loki} from '../sysgen/loki';
 import {Router} from '@angular/router';
+import {Cart} from '../sysgen/Cart';
 
 @Component({
   selector: 'app-nav',
@@ -10,6 +11,7 @@ import {Router} from '@angular/router';
 })
 export class NavComponent implements OnInit {
   isAuth;
+  cartCount = 0;
 
   constructor(private http: LocalService, private router: Router) {
   }
@@ -20,6 +22,10 @@ export class NavComponent implements OnInit {
         this.isAuth = response;
       }
     );
+    this.http.cartChangeBool.subscribe(
+      response => {
+        this.cartCount = Cart.getDBItems().length;
+      });
   }
 
   logoutUser() {

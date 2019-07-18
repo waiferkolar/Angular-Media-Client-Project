@@ -5,7 +5,7 @@
         <img src="{{product.image}}" class="card-img-top my_image">
         <div class="card-body">
           <h5 class="card-title">{{product.name}}</h5>
-          <a class="btn btn-primary btn-sm">Detail</a>
+          <a class="btn btn-warning btn-sm" (click)="addToCart(product)">Add To Cart</a>
         </div>
       </div>
     </div>
